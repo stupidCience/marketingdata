@@ -1,5 +1,4 @@
 import { Megaphone, RefreshCw } from 'lucide-react';
-import { AppLayout } from '../components/AppLayout';
 
 // Precisamos manter os dados (mesmo que mockados por enquanto) para a tabela renderizar
 const mockAdsResponse = {
@@ -11,9 +10,8 @@ const mockAdsResponse = {
 };
 
 export default function AdsList() {
-  // TODO MUNDO PRECISA DO RETURN
   return (
-    <AppLayout>
+    <> {/* 1. Use um Fragment vazio aqui em vez do AppLayout */}
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 text-center sm:text-left">Contas de Anúncios Meta</h1>
@@ -58,6 +56,6 @@ export default function AdsList() {
           </table>
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }

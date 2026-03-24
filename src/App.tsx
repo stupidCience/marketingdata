@@ -1,33 +1,40 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import AppLayout from './components/AppLayout'; // ESTA LINHA ESTAVA FALTANDO
+
+// Páginas
 import Login from './pages/Login';
-import AdsList from './pages/AdsList';
-import Dashboards from './pages/Dashboards';
 import Home from './pages/Home';
+import Dashboards from './pages/Dashboards';
+import AdsList from './pages/AdsList';
 import Integrations from './pages/Integrations';
 import Settings from './pages/Settings';
-
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Rota de Login */}
+        {/* Rota Pública */}
         <Route path="/login" element={<Login />} />
 
-        <Route path="/home" element={<Home />} />
+        {/* Rotas Protegidas */}
+        <Route element={<ProtectedRoute />}>
+          {/* O AppLayout envolve as rotas internas e renderiza as páginas no <Outlet /> */}
+          <Route element={<AppLayout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/dashboards" element={<Dashboards />} />
+            <Route path="/ads" element={<AdsList />} />
+            <Route path="/integrations" element={<Integrations />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
+        </Route>
+
+        {/* Redirecionamento Inicial */}
+        <Route path="/" element={<Navigate to="/home" replace />} />
         
-        {/* Rota do Dashboard (Protegida futuramente) */}
-        <Route path="/dashboards" element={<Dashboards />} />
-        
-        <Route path="/integrations" element={<Integrations />} />
-        {/* Redireciona qualquer rota vazia para o Login por padrão */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-
-        <Route path="/ads" element={<AdsList />} />
-
-        <Route path="/settings" element={<Settings />} />
-
+        {/* Catch-all para rotas não encontradas */}
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </BrowserRouter>
   );

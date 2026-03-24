@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { User, Building2, Bell, ShieldCheck, Save } from 'lucide-react';
-import { AppLayout } from '../components/AppLayout';
+
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState<'profile' | 'company' | 'notifications'>('profile');
 
   return (
-    <AppLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Configurações</h1>
         <p className="text-gray-500">Gerencie as preferências da sua conta e da sua empresa.</p>
@@ -104,6 +104,6 @@ export default function Settings() {
           )}
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }

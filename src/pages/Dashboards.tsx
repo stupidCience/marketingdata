@@ -1,9 +1,8 @@
-import { AppLayout } from '../components/AppLayout';
 import { Plus, Layout as LayoutIcon, MoreVertical } from 'lucide-react';
 
 export default function Dashboards() {
   return (
-    <AppLayout>
+    <>
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Meus Dashboards</h1>
@@ -36,6 +35,6 @@ export default function Dashboards() {
           </div>
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }

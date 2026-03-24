@@ -2,8 +2,9 @@
 import { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { Menu } from 'lucide-react';
+import { Outlet } from 'react-router-dom'; // 1. Importe o Outlet
 
-export function AppLayout({ children }: { children: React.ReactNode }) {
+export default function AppLayout() { // 2. Remova a prop children
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -24,7 +25,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
           <div className="mx-auto max-w-7xl">
-            {children}
+            {/* 3. Substitua {children} por <Outlet /> */}
+            <Outlet /> 
           </div>
         </main>
       </div>
