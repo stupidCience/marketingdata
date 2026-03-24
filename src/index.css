@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Isso garante que o body e o html ocupem sempre a altura total sem margens estranhas */
+@layer base {
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
