@@ -1,4 +1,4 @@
-import { AppLayout } from '../components/AppLayout';
+
 import { ArrowUpRight, TrendingUp, Users, Target, MousePointer2 } from 'lucide-react';
 
 // Dados estáticos para dar vida à Home (Estático Primeiro)
@@ -11,7 +11,7 @@ const quickStats = [
 
 export default function Home() {
   return (
-    <AppLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Olá, João! 👋</h1>
         <p className="text-gray-500">Aqui está o que aconteceu nas tuas campanhas nas últimas 24 horas.</p>
@@ -68,6 +68,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }

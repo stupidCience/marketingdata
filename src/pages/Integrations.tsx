@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Cable, CheckCircle2, Circle, Share2, RefreshCw } from 'lucide-react';
-import { AppLayout } from '../components/AppLayout';
-
 // Simulação das contas que vêm da api/meta/ads/ad-accounts
 const mockAdAccounts = [
   { id: "act_123456789", name: "E-commerce Alpha", status: "ACTIVE" },
@@ -13,7 +11,7 @@ export default function Integrations() {
   const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);
 
   return (
-    <AppLayout>
+    <>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Integrações</h1>
         <p className="text-gray-500">Conecte suas fontes de dados e selecione as contas de anúncio.</p>
@@ -80,6 +78,6 @@ export default function Integrations() {
            </button>
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }

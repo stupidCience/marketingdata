@@ -31,10 +31,10 @@ function App() {
         </Route>
 
         {/* Redirecionamento Inicial */}
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         
         {/* Catch-all para rotas não encontradas */}
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );

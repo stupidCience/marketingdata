@@ -1,10 +1,9 @@
-// src/components/AppLayout.tsx
 import { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { Menu } from 'lucide-react';
 import { Outlet } from 'react-router-dom'; // 1. Importe o Outlet
 
-export default function AppLayout() { // 2. Remova a prop children
+export default function AppLayout() { // 2. Remova a prop { children }
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -16,7 +15,7 @@ export default function AppLayout() { // 2. Remova a prop children
         <header className="flex h-16 items-center border-b bg-white px-4 lg:hidden">
           <button 
             onClick={() => setIsSidebarOpen(true)}
-            className="text-gray-600 hover:text-blue-600 transition-colors"
+            className="text-gray-600 hover:text-blue-600"
           >
             <Menu size={28} />
           </button>
@@ -25,8 +24,7 @@ export default function AppLayout() { // 2. Remova a prop children
 
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
           <div className="mx-auto max-w-7xl">
-            {/* 3. Substitua {children} por <Outlet /> */}
-            <Outlet /> 
+            <Outlet /> {/* 3. Onde a mágica acontece: as páginas entram aqui */}
           </div>
         </main>
       </div>
