@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# ⚙️ MarketingData API - Core Service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta é a API central do ecossistema **MarketingData**, responsável pela orquestração de autenticação, gestão de integrações via OAuth e execução do motor de **ETL (Extract, Transform, Load)** para métricas de marketing.
 
-Currently, two official plugins are available:
+> **Nota:** Este é um repositório privado. O uso e distribuição de chaves de API contidas no ambiente local são restritos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🏗️ Arquitetura do Sistema
 
-## React Compiler
+A API foi construída seguindo o padrão de **Módulos**, facilitando a expansão para novos provedores (Google Ads, TikTok, etc.).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Core:** Middleware de autenticação (JWT), utilitários de resposta e configuração global do banco de dados.
+* **Modules:** Cada provedor possui sua própria estrutura de `routes`, `controllers`, `services` e `repositories`.
+* **Database:** Persistência em **SQLite** com foco em performance analítica para BI.
 
-## Expanding the ESLint configuration
+## 🚀 Stack Técnica
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Runtime:** Node.js (ES Modules)
+* **Framework:** Express.js
+* **Banco de Dados:** SQLite3
+* **Integrações:** Axios (Graph API Meta)
+* **Segurança:** JWT (JSON Web Tokens) & Bcrypt
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔧 Configuração de Ambiente
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Para rodar este serviço, é obrigatório criar um arquivo `.env` na raiz seguindo o modelo abaixo:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```env
+PORT=3000
+JWT_SECRET=sua_chave_secreta_aqui
+META_CLIENT_ID=seu_client_id_da_meta
+META_CLIENT_SECRET=seu_secret_da_meta
+META_REDIRECT_URI=http://localhost:5173/integrations
