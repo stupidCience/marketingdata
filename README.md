@@ -1,32 +1,47 @@
-# ⚙️ MarketingData API - Core Service
+# 📊 MarketingData - Dashboard UI
 
-Esta é a API central do ecossistema **MarketingData**, responsável pela orquestração de autenticação, gestão de integrações via OAuth e execução do motor de **ETL (Extract, Transform, Load)** para métricas de marketing.
+Este é o frontend do ecossistema **MarketingData**, uma interface administrativa construída em React para visualização de métricas de tráfego pago e gestão de integrações.
 
-> **Nota:** Este é um repositório privado. O uso e distribuição de chaves de API contidas no ambiente local são restritos.
+## 🎨 Interface e Recursos
 
-## 🏗️ Arquitetura do Sistema
+* **Biblioteca de Dados:** Visualização tabular de métricas extraídas (Spend, Clicks, Impressions).
+* **Gestão de Integrações:** Fluxo de autenticação OAuth com Meta Ads.
+* **Seletor Dinâmico:** Modal para ativação/desativação de contas de anúncios.
+* **Layout Responsivo:** Sidebar estruturada por seções (Análise, Gestão, Sistema).
 
-A API foi construída seguindo o padrão de **Módulos**, facilitando a expansão para novos provedores (Google Ads, TikTok, etc.).
+## 🛠️ Stack Tecnológica
 
-* **Core:** Middleware de autenticação (JWT), utilitários de resposta e configuração global do banco de dados.
-* **Modules:** Cada provedor possui sua própria estrutura de `routes`, `controllers`, `services` e `repositories`.
-* **Database:** Persistência em **SQLite** com foco em performance analítica para BI.
+* **Framework:** React 18 (Vite)
+* **Estilização:** Tailwind CSS
+* **Ícones:** Lucide React
+* **Comunicação:** Axios (com interceptors para Auth)
+* **Navegação:** React Router Dom
 
-## 🚀 Stack Técnica
+## ⚙️ Configuração Local
 
-* **Runtime:** Node.js (ES Modules)
-* **Framework:** Express.js
-* **Banco de Dados:** SQLite3
-* **Integrações:** Axios (Graph API Meta)
-* **Segurança:** JWT (JSON Web Tokens) & Bcrypt
+1.  **Instalação:**
+    ```bash
+    npm install
+    ```
 
-## 🔧 Configuração de Ambiente
+2.  **Variáveis de Ambiente:**
+    Crie um ficheiro `.env` na raiz do projeto:
+    ```env
+    VITE_API_URL=http://localhost:3000/api
+    ```
+    *(Nota: No Vite, variáveis de ambiente devem obrigatoriamente começar com `VITE_`)*.
 
-Para rodar este serviço, é obrigatório criar um arquivo `.env` na raiz seguindo o modelo abaixo:
+3.  **Execução:**
+    ```bash
+    npm run dev
+    ```
 
-```env
-PORT=3000
-JWT_SECRET=sua_chave_secreta_aqui
-META_CLIENT_ID=seu_client_id_da_meta
-META_CLIENT_SECRET=seu_secret_da_meta
-META_REDIRECT_URI=http://localhost:5173/integrations
+## 📂 Estrutura de Pastas
+
+* `src/pages`: Componentes de página (DataLibrary, Integrations, AdsList).
+* `src/components`: UI Elements reutilizáveis (Sidebar, Layout).
+* `src/services`: Configuração do cliente Axios (`api.ts`).
+* `src/hooks`: Lógica de estado compartilhada (se aplicável).
+
+---
+**Projeto Privado** - Uso Restrito.
