@@ -10,6 +10,7 @@ import Dashboards from './pages/Dashboards';
 import AdsList from './pages/AdsList';
 import Integrations from './pages/Integrations';
 import Settings from './pages/Settings';
+import DataLibrary from './pages/DataLibrary';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/home" element={<Home />} />
             <Route path="/dashboards" element={<Dashboards />} />
-            <Route path="/ads" element={<AdsList />} />
+            <Route path="/data-library" element={<DataLibrary />} />
+            <Route path="/ads-list" element={<AdsList />} />
             <Route path="/integrations" element={<Integrations />} />
             <Route path="/settings" element={<Settings />} />
           </Route>

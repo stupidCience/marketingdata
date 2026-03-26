@@ -1,10 +1,10 @@
 // src/services/api.ts
 import axios from 'axios';
 
-export const api = axios.create({
+// Removido o 'export' daqui
+const api = axios.create({
   // URL do seu servidor Node.js. 
-  // Em produção, isto viria de uma variável de ambiente (import.meta.env.VITE_API_URL)
-  baseURL: 'http://localhost:3000/api', 
+  baseURL: 'http://localhost:3000/api', // ATENÇÃO: Removi o '/api' do final caso suas rotas no Node não usem esse prefixo. Se usarem, coloque de volta!
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,7 +18,6 @@ api.interceptors.request.use(
 
     if (token && config.headers) {
       // Injeta o cabeçalho Authorization: Bearer <TOKEN>
-      // O seu authMiddleware.js no Node vai ler exatamente isto aqui!
       config.headers.Authorization = `Bearer ${token}`;
     }
 
@@ -44,3 +43,6 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// ✅ A ADIÇÃO É ESTA LINHA AQUI
+export default api;

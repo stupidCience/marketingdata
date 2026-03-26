@@ -1,11 +1,15 @@
-import { Home, Layout, Cable, Settings, LogOut, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-const menuItems = [
-  { icon: Home, label: 'Home', path: '/home' },
-  { icon: Layout, label: 'Dashboards', path: '/dashboards' },
-  { icon: Cable, label: 'Integrações', path: '/integrations' },
-  { icon: Settings, label: 'Configurações', path: '/settings' },
+import { Home, PieChart, Cable, Briefcase, Settings, LogOut, X, Database } from 'lucide-react';
+const navigation = [
+  { name: 'Dashboard', href: '/home', icon: Home },
+  { name: 'Meus Dashboards', href: '/dashboards', icon: PieChart, section: 'Análise' },
+  { name: 'Biblioteca de Dados', href: '/data-library', icon: Database, section: 'Análise' },
+  // Agrupando a parte de Gestão
+  { name: 'Contas de Anúncios', href: '/ads-list', icon: Briefcase }, // <-- Nossa tela atual!
+  { name: 'Integrações', href: '/integrations', icon: Cable },        // <-- Nossa tela do Modal!
+  
+  { name: 'Configurações', href: '/settings', icon: Settings },
 ];
 
 interface SidebarProps {
@@ -34,19 +38,19 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
         
         <nav className="flex-1 space-y-1 px-4 py-6">
-          {menuItems.map((item) => {
-            const isActive = location.pathname.startsWith(item.path);
+          {navigation.map((item) => {
+            const isActive = location.pathname === item.href;
             return (
               <Link
-                key={item.path}
-                to={item.path}
+                key={item.href}
+                to={item.href}
                 onClick={() => onClose()}
                 className={`flex items-center space-x-3 rounded-lg px-4 py-3 transition-colors ${
                   isActive ? 'bg-blue-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                 }`}
               >
                 <item.icon size={20} />
-                <span className="font-medium">{item.label}</span>
+                <span className="font-medium">{item.name}</span>
               </Link>
             );
           })}

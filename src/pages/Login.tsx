@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../services/authService';
+import { login } from '../services/authService'; // 1. Mudei o import aqui
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,12 +16,13 @@ export default function Login() {
     setError('');
 
     try {
-      const response = await authService.login(email, password);
-      if (response.success) {
+      // 2. Mudei a chamada aqui: tiramos o authService. e deixamos só login()
+      const response = await login(email, password);
+      if (response.token) { // Verificamos se veio o token em vez de 'success'
         navigate('/home');
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Falha ao conectar ao servidor. Verifique o Back-end.');
+      setError(err.message || 'Falha ao conectar ao servidor. Verifique o Back-end.');
     } finally {
       setLoading(false);
     }
